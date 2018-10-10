@@ -6,74 +6,100 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
-
 require("./odnoklassniki_sdk.php");
 if (!OdnoklassnikiSDK::checkCurlSupport()){
+    //библиотека не подключена
     print "У вас не установлен модуль curl, который требуется для работы с SDK одноклассников.  Инструкция по установке есть, например, <a href=\"http://www.php.net/manual/en/curl.installation.php\">здесь</a>.";
     return;
 }else {
+    //библиотека подключена. можно работать
+    if (isset($_COOKIE['access_token'])
+        && isset($_COOKIE['refresh_token'])
+    ) {
+        //авторизованы
 
-
-    if (!is_null(OdnoklassnikiSDK::getCode())) {
-
-        /*
-        throw new Exception(
-            print_r(
-                !empty($a[self::PARAMETER_NAME_ACCESS_TOKEN]) && !empty($a[self::PARAMETER_NAME_REFRESH_TOKEN])
-            )
-        );
-
-        */
+        //запишем токен из кук (чтоб не авторизовываться 300 раз)
+        OdnoklassnikiSDK::$access_token = $_COOKIE['access_token'];
+        OdnoklassnikiSDK::$refresh_token = $_COOKIE['refresh_token'];
 
 
 
-        if (OdnoklassnikiSDK::changeCodeToToken(OdnoklassnikiSDK::getCode())) {
-            // сделать что-то, если аторизация удалась
-//            print_r('SUCCESS!');//сукес
-
-            // получили пользователя
-            $current_user = OdnoklassnikiSDK::makeRequest("users.getCurrentUser", array("fields" => "name,pic_5"));
-
-            $uid = $current_user['uid'];//id пользователя в одноклассниках
-
-                $albomId = 875741333355; // id альбома
-
-                // собираем параметры в массив
-                $params = array(
-                    "application_key=". OdnoklassnikiSDK::$app_public_key, // ключ приложения
-                    "format=". "json", // тип передачи данных
-//                    "access_token=". OdnoklassnikiSDK::$access_token, // ключ приложения
-                    "uid=". $uid, // id юзера
-                    "aid=". $albomId // id альбома. если не передавать параметр aid, то получим фотки из "личного альбома"
-                );
-                sort($params); // сортировка массива
-                $sig = md5(join('', $params).OdnoklassnikiSDK::$app_secret_key); // генерируем сигнатуру
-                // ссылка, по которой будет сделан запрос к api
-                $req = "http://api.odnoklassniki.ru/api/photos/getPhotos?sig=".$sig."&".join('&',$params);
-                $page = file_get_contents($req); // запрос к api одноклассников
-print_r($page);
-
-//                $result = json_decode($page,true); // разбираем полученные данные
-//
-//                // вывод полученных данных
-//                echo "<pre>";
-//                print_r ($result["photos"]);
-//                echo "</pre>";
+        // получили пользователя
+        $current_user = OdnoklassnikiSDK::makeRequest("users.getCurrentUser", array("fields" => "name,pic_5"));
 
 
+        $_GET['action'] = isset($_GET['action']) ? $_GET['action'] : 'list';//действие по умолчанию, если не пришло другое
+        switch ($_GET['action']) {
 
-        }else {
-            OdnoklassnikiSDK::showError("Не удалось получить токен" );
+            case 'edit':
+                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('id'=>$_GET['id']));
+
+                echo "<pre>";
+                print_r ($result);
+                echo "</pre>";
+                $content = 'edit.php';//подключили view с редактированием
+                    break;
+
+
+            case 'delete':
+                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('id'=>$_GET['id']));
+
+                echo "<pre>";
+                print_r ($result);
+                echo "</pre>";
+                $content = 'delete.php';//подключили view с удалением
+                    break;
+
+
+            case 'list':
+                $result = OdnoklassnikiSDK::makeRequest("photos.getPhotos");
+                echo "<pre>";
+//                print_r ($result);
+                echo "</pre>";
+                $content = 'list.php';//подключили view со списком
+
+                    break;
+
+
         }
-    }else{
-        header("Location: https://connect.ok.ru/oauth/authorize?client_id=".OdnoklassnikiSDK::$app_id
-            ."&scope=VALUABLE_ACCESS;LONG_ACCESS_TOKEN&response_type=code&redirect_uri=".OdnoklassnikiSDK::$redirect_url);
+        include 'views/template.php';
+    } else {
+    //не авторизованы
+        if (!is_null(OdnoklassnikiSDK::getCode())) {
+            /*
+            throw new Exception(
+                print_r(
+                    !empty($a[self::PARAMETER_NAME_ACCESS_TOKEN]) && !empty($a[self::PARAMETER_NAME_REFRESH_TOKEN])
+                )
+            );
+
+                $uid = $current_user['uid'];//id пользователя в одноклассниках
+
+
+            echo "<pre>";
+                print_r ($result);
+            echo "</pre>";
+
+
+
+            */
+            if (OdnoklassnikiSDK::changeCodeToToken(OdnoklassnikiSDK::getCode())) {
+                // сделать что-то, если аторизация удалась
+
+                //запишем куки с токенами и обновим страницу
+                setcookie("access_token", OdnoklassnikiSDK::$access_token, time()+3600*5);// 5 часов
+                setcookie("refresh_token", OdnoklassnikiSDK::$refresh_token, time()+3600*5);// 5 часов
+
+                header("Location: localhost/mailru/index.php?");
+            } else {
+                OdnoklassnikiSDK::showError("Не удалось получить токен");
+            }
+        } else {
+            header("Location: https://connect.ok.ru/oauth/authorize?client_id=" . OdnoklassnikiSDK::$app_id
+                . "&scope=VALUABLE_ACCESS;LONG_ACCESS_TOKEN&response_type=code&redirect_uri=" . OdnoklassnikiSDK::$redirect_url);
+
+        }
 
     }
-
-
-//    print_r(OdnoklassnikiSDK::getCode());
-
-//    file_get_contents('
 }
 ?>
