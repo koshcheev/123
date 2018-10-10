@@ -24,12 +24,12 @@
 	- название: "SocialAuther Test"
 	- тип: _"Веб-сайт"_
 - **Шаг 2.** Настройка секции "_Open API_":
-	- адрес сайта: `http://localhost/auth?provider=vk`
-	- базовый домен: "localhost"
+	- адрес сайта: `http://localhost:85/auth?provider=vk`
+	- базовый домен: "localhost:85"
 - **Шаг 3.** Конфигурация параметров `client_id`, `client_secret` и `redirect_uri`:
 	- `client_id` - содержится в опции _"ID приложения"_. Пример: `3078654`
 	- `client_secret` - содержится в опции _"Защищенный ключ"_. Пример: `zrCHcmKAcBvblSUIBIwu`
-	- `redirect_uri` - содержится в опции _"Адрес сайта"_. Пример: `http://localhost/auth?provider=vk`
+	- `redirect_uri` - содержится в опции _"Адрес сайта"_. Пример: `http://localhost:85/auth?provider=vk`
 - **Шаг 4.** Использование **SocialAuther**.
 
 Применение **SocialAuther**:
@@ -40,7 +40,7 @@
     $vkAdapterConfig = array(
         'client_id'     => '3078654',
         'client_secret' => 'zrCHcmKAcBvblSUIBIwu',
-        'redirect_uri'  => 'http://localhost/auth?provider=vk'
+        'redirect_uri'  => 'http://localhost:85/auth?provider=vk'
     );
 
 	// создание адаптера и передача настроек
@@ -88,12 +88,12 @@
 - **Шаг 2.** Настройка приложения:
 	- название: "SocialAuther Test"
     - shortname: _www.odnoklassniki.ru/game/auther
-    - ссылка на приложение: `http://localhost/auth?provider=odnoklassniki`
+    - ссылка на приложение: `http://localhost:85/auth?provider=odnoklassniki`
     - "Ссылка на картинку" и "Ссылка на аватарку": ссылка на любое изображение
 - **Шаг 3.** Конфигурация параметров `client_id`, `client_secret`, `redirect_uri`, `public_key`. Всю нужную информацию вы найдёте в письме, которое было отправлено на вашу электронную почту после успешного добавления приложения:
 	- `client_id` - Application ID. Пример: `658606315`
 	- `client_secret` - секретный ключ приложения. Пример: `C35045020A8C7C066F25C4C7`
-	- `redirect_uri` - ссылка на приложение. Пример: `http://localhost/auth?provider=odnoklassniki`
+	- `redirect_uri` - ссылка на приложение. Пример: `http://localhost:85/auth?provider=odnoklassniki`
 	- `public_key` - публичный ключ приложения. Пример: `BAMKABABACADCBBAB`
 - **Шаг 4.** Использование **SocialAuther**.
 
@@ -104,7 +104,7 @@
     $odnoklassnikiConfig = array(
         'client_id'     => '658606315',
         'client_secret' => 'C35045020A8C7C066F25C4C7',
-        'redirect_uri'  => 'http://localhost/auth?provider=odnoklassniki',
+        'redirect_uri'  => 'http://localhost:85/auth?provider=odnoklassniki',
         'public_key'    => 'BAMKABABACADCBBAB'
     );
 
@@ -145,29 +145,29 @@
 - **Шаг 1.** Создание [нового приложения](http://api.mail.ru/sites/my/add):
     - соглашаемся с правилами
     - название: "SocialAuther Test"
-    - адрес главной страницы: `http://localhost/auth?provider=mailru`
+    - адрес главной страницы: `http://localhost:85/auth?provider=odnoklassniki.loc`
 - **Шаг 2.** Настройка приложения:
     - скачиваем предложенный файл receiver.html и помещаем в папку проекта
     - для установки на локальный сервер, нажимаем "Пропустить"
 - **Шаг 3.** Конфигурация параметров `client_id`, `client_secret`, `redirect_uri`:
 	- `client_id` - ID. Пример: `670707`
 	- `client_secret` - секретный ключ. Пример: `a619062972f2073ded61405b8f8eccd2`
-	- `redirect_uri` - адрес главной страницы. Пример: `http://localhost/auth?provider=mailru`
+	- `redirect_uri` - адрес главной страницы. Пример: `http://localhost:85/auth?provider=odnoklassniki.loc`
 - **Шаг 4.** Использование **SocialAuther**.
 
 Применение **SocialAuther**:
 
     <?php
 
-    $mailruAdapterConfig = array(
+    $odnoklassniki.locAdapterConfig = array(
         'client_id'     => '670707',
         'client_secret' => 'a619062972f2073ded61405b8f8eccd2',
-        'redirect_uri'  => 'http://localhost/auth?provider=mailru'
+        'redirect_uri'  => 'http://localhost:85/auth?provider=odnoklassniki.loc'
     );
 
-    $mailruAdapter = new SocialAuther\Adapter\Mailru($mailruAdapterConfig);
+    $odnoklassniki.locAdapter = new SocialAuther\Adapter\odnoklassniki.loc($odnoklassniki.locAdapterConfig);
 
-    $auther = new SocialAuther\SocialAuther($mailruAdapter);
+    $auther = new SocialAuther\SocialAuther($odnoklassniki.locAdapter);
 
     if (!isset($_GET['code'])) {
         echo '<p><a href="' . $auther->getAuthUrl() . '">Аутентификация через Mail.ru</a></p>';
@@ -203,11 +203,11 @@
 - **Шаг 2.** Настройка приложения:
     - Название: "SocialAuther Test"
     - Права: "Яндекс.Логин - Адрес электронной почты; Дата рождения; Имя пользователя, ФИО, пол"
-    - Callback URI: `http://localhost/auth?provider=yandex`
+    - Callback URI: `http://localhost:85/auth?provider=yandex`
 - **Шаг 3.** Конфигурация параметров `client_id`, `client_secret`, `redirect_uri`:
 	- `client_id` - Id приложения. Пример: `bff0bfcaef054ab66c0538b39e0a86cf`
 	- `client_secret` - Пароль приложения. Пример: `219ba88d386b114b9c6abef7eab4e8e4`
-	- `redirect_uri` - Callback URI. Пример: `http://localhost/auth?provider=yandex`
+	- `redirect_uri` - Callback URI. Пример: `http://localhost:85/auth?provider=yandex`
 - **Шаг 4.** Использование **SocialAuther**.
 
 Применение **SocialAuther**:
@@ -217,7 +217,7 @@
     $yandexAdapterConfig = array(
         'client_id'     => 'bff0bfcaef054ab66c0538b39e0a86cf',
         'client_secret' => '219ba88d386b114b9c6abef7eab4e8e4',
-        'redirect_uri'  => 'http://localhost/auth?provider=yandex'
+        'redirect_uri'  => 'http://localhost:85/auth?provider=yandex'
     );
 
     $yandexAdapter = new SocialAuther\Adapter\Yandex($yandexAdapterConfig);
@@ -261,12 +261,12 @@
     - API Access: "SocialAuther Test"
     - Нажимаем Next
     - Application Type: "Web application"
-    - Your site or hostname: `localhost/google-auth`
+    - Your site or hostname: `localhost:85/google-auth`
     - Нажимаем Create client ID
 - **Шаг 3.** Конфигурация параметров `client_id`, `client_secret`, `redirect_uri`:
 	- `client_id` - Id приложения. Пример: `333739311538.apps.googleusercontent.com`
 	- `client_secret` - Пароль приложения. Пример: `lZB3aW8UG8gDj6WVIEIcidt5`
-	- `redirect_uri` - Callback URI. Пример: `http://localhost/auth?provider=google`
+	- `redirect_uri` - Callback URI. Пример: `http://localhost:85/auth?provider=google`
 - **Шаг 4.** Использование **SocialAuther**.
 
 Применение **SocialAuther**:
@@ -276,7 +276,7 @@
     $googleAdapterConfig = array(
         'client_id'     => '393337311853.apps.googleusercontent.com',
         'client_secret' => 'B38WaUlZG8gDI6jIEWVct5id',
-        'redirect_uri'  => 'http://localhost/auth?provider=google'
+        'redirect_uri'  => 'http://localhost:85/auth?provider=google'
     );
 
     $googleAdapter = new SocialAuther\Adapter\Google($googleAdapterConfig);
@@ -319,11 +319,11 @@
     - Нажимаем "Продолжить"
 - **Шаг 2.** Настройка приложения:
     - Нажимаем "Website with Facebook Login"
-    - Вводим Site URL: `http://localhost/auth?provider=facebook`
+    - Вводим Site URL: `http://localhost:85/auth?provider=facebook`
 - **Шаг 3.** Конфигурация параметров `client_id`, `client_secret`, `redirect_uri`:
 	- `client_id` - App ID. Пример: `346158195993388`
 	- `client_secret` - App Secret. Пример: `2de1ab376d1c17cd47250920c05ab386`
-	- `redirect_uri` - Callback URI. Пример: `http://localhost/auth?provider=facebook`
+	- `redirect_uri` - Callback URI. Пример: `http://localhost:85/auth?provider=facebook`
 - **Шаг 4.** Использование **SocialAuther**.
 
 Применение **SocialAuther**:
@@ -333,7 +333,7 @@
     $facebookAdapterConfig = array(
         'client_id'     => '346158195993388',
         'client_secret' => '2de1ab376d1c17cd47250920c05ab386',
-        'redirect_uri'  => 'http://localhost/auth?provider=facebook'
+        'redirect_uri'  => 'http://localhost:85/auth?provider=facebook'
     );
 
     $facebookAdapter = new SocialAuther\Adapter\Facebook($facebookAdapterConfig);
@@ -376,33 +376,33 @@
         'vk' => array(
             'client_id'     => '3078654',
             'client_secret' => 'zrCHcmKAcBvblSUIBIwu',
-            'redirect_uri'  => 'http://localhost/auth/?provider=vk'
+            'redirect_uri'  => 'http://localhost:85/auth/?provider=vk'
         ),
         'odnoklassniki' => array(
             'client_id'     => '658606315',
             'client_secret' => 'C35045020A8C7C066F25C4C7',
-            'redirect_uri'  => 'http://localhost/auth?provider=odnoklassniki',
+            'redirect_uri'  => 'http://localhost:85/auth?provider=odnoklassniki',
             'public_key'    => 'BAMKABABACADCBBAB'
         ),
-        'mailru' => array(
+        'odnoklassniki.loc' => array(
             'client_id'     => '670707',
             'client_secret' => 'a619062972f2073ded61405b8f8eccd2',
-            'redirect_uri'  => 'http://localhost/auth/?provider=mailru'
+            'redirect_uri'  => 'http://localhost:85/auth/?provider=odnoklassniki.loc'
         ),
         'yandex' => array(
             'client_id'     => 'bff0bfcaef054ab66c0538b39e0a86cf',
             'client_secret' => '219ba88d386b114b9c6abef7eab4e8e4',
-            'redirect_uri'  => 'http://localhost/auth/?provider=yandex'
+            'redirect_uri'  => 'http://localhost:85/auth/?provider=yandex'
         ),
         'google' => array(
             'client_id'     => '393337311853.apps.googleusercontent.com',
             'client_secret' => 'B38WaUlZG8gDI6jIEWVct5id',
-            'redirect_uri'  => 'http://localhost/auth?provider=google'
+            'redirect_uri'  => 'http://localhost:85/auth?provider=google'
         ),
         'facebook' => array(
             'client_id'     => '346158195993388',
             'client_secret' => '2de1ab376d1c17cd47250920c05ab386',
-            'redirect_uri'  => 'http://localhost/auth?provider=facebook'
+            'redirect_uri'  => 'http://localhost:85/auth?provider=facebook'
         )
     );
 

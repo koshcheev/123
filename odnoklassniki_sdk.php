@@ -5,7 +5,7 @@ class OdnoklassnikiSDK{
     public static $app_id = "1271565056";
     public static $app_public_key = "CBAMILMMEBABABABA";
     public static $app_secret_key = "41E4007FF5A806F62E36BC49";
-    public static $redirect_url = "http://localhost/mailru/index.php";
+    public static $redirect_url = "http://localhost:85/odnoklassniki.loc/index.php";
     public static $TOKEN_SERVICE_ADDRESS = "http://api.odnoklassniki.ru/oauth/token.do";
     public static $API_REQUSET_ADDRESS = "http://api.odnoklassniki.ru/fb.do";
     public static $access_token;

@@ -31,23 +31,35 @@ if (!OdnoklassnikiSDK::checkCurlSupport()){
         $_GET['action'] = isset($_GET['action']) ? $_GET['action'] : 'list';//действие по умолчанию, если не пришло другое
         switch ($_GET['action']) {
 
-            case 'edit':
-                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('id'=>$_GET['id']));
+            case 'save':
+                $result = OdnoklassnikiSDK::makeRequest("photos.editPhoto",
+                    array(
+                        'photo_id'=>$_GET['id'],
+                        'description'=>$_GET['desc'],
+                    )
+                );
+                $message = "Описание фотографии обновлено";
+                $content = 'message.php';//подключили view c сообщением
+                    break;
 
-                echo "<pre>";
-                print_r ($result);
-                echo "</pre>";
+            case 'edit':
+//                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('id'=>$_GET['id']));
+
+//                echo "<pre>";
+//                print_r ($result);
+//                echo "</pre>";
                 $content = 'edit.php';//подключили view с редактированием
                     break;
 
 
             case 'delete':
-                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('id'=>$_GET['id']));
+                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('photo_id'=>$_GET['id']));
 
                 echo "<pre>";
                 print_r ($result);
                 echo "</pre>";
-                $content = 'delete.php';//подключили view с удалением
+                $message = "Фотография удалена";
+                $content = 'message.php';//подключили view c сообщением
                     break;
 
 
@@ -90,7 +102,7 @@ if (!OdnoklassnikiSDK::checkCurlSupport()){
                 setcookie("access_token", OdnoklassnikiSDK::$access_token, time()+3600*5);// 5 часов
                 setcookie("refresh_token", OdnoklassnikiSDK::$refresh_token, time()+3600*5);// 5 часов
 
-                header("Location: localhost/mailru/index.php?");
+                header("Location: localhost:85/odnoklassniki.loc/index.php?");
             } else {
                 OdnoklassnikiSDK::showError("Не удалось получить токен");
             }

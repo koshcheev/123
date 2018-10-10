@@ -1,0 +1,35 @@
+.container{
+    width: 45% ;
+}
+
+.col{
+    text-align: center;
+}
+
+.btn{
+    color: #fff;
+    background-color: #7b1fa2;
+
+}
+
+.btn:hover{
+    background-color: #8e24aa;
+
+}
+
+html, {
+    background-color: #f3e5f5;
+}
+
+
+header{
+    margin-top:-20px;
+    width:100%;
+    background-color: #ce93d8;
+    padding: 20px;
+}
+
+.centercol{
+    background-color: #e1bee7  ;
+    padding: 30px;
+}
