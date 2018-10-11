@@ -6,7 +6,7 @@
 
     <div class="col s2">
         <a class="waves-effect waves-light btn"
-                href="?action=add">Добавить фото</a>
+                href="?action=add">Создать альбом</a>
     </div>
     <div class="col s10">
 

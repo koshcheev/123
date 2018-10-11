@@ -3,6 +3,7 @@ class OdnoklassnikiSDK{
     const PARAMETER_NAME_ACCESS_TOKEN = "access_token";
     const PARAMETER_NAME_REFRESH_TOKEN = "refresh_token";
     public static $app_id = "1271565056";
+    public static $user_name = null;
     public static $app_public_key = "CBAMILMMEBABABABA";
     public static $app_secret_key = "41E4007FF5A806F62E36BC49";
     public static $redirect_url = "http://localhost:85/odnoklassniki.loc/index.php";

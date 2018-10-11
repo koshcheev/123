@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.btn{
+.btn, .btn:focus, btn:active, btn:visited{
     color: #fff;
     background-color: #7b1fa2;
 
@@ -17,7 +17,7 @@
 
 }
 
-html, {
+html{
     background-color: #f3e5f5;
 }
 

@@ -12,97 +12,41 @@ if (!OdnoklassnikiSDK::checkCurlSupport()){
     print "У вас не установлен модуль curl, который требуется для работы с SDK одноклассников.  Инструкция по установке есть, например, <a href=\"http://www.php.net/manual/en/curl.installation.php\">здесь</a>.";
     return;
 }else {
+
     //библиотека подключена. можно работать
     if (isset($_COOKIE['access_token'])
         && isset($_COOKIE['refresh_token'])
+        && isset($_COOKIE['user_name'])
     ) {
         //авторизованы
-
-        //запишем токен из кук (чтоб не авторизовываться 300 раз)
-        OdnoklassnikiSDK::$access_token = $_COOKIE['access_token'];
-        OdnoklassnikiSDK::$refresh_token = $_COOKIE['refresh_token'];
+        Crud::doCrud();
 
 
-
-        // получили пользователя
-        $current_user = OdnoklassnikiSDK::makeRequest("users.getCurrentUser", array("fields" => "name,pic_5"));
-
-
-        $_GET['action'] = isset($_GET['action']) ? $_GET['action'] : 'list';//действие по умолчанию, если не пришло другое
-        switch ($_GET['action']) {
-
-            case 'save':
-                $result = OdnoklassnikiSDK::makeRequest("photos.editPhoto",
-                    array(
-                        'photo_id'=>$_GET['id'],
-                        'description'=>$_GET['desc'],
-                    )
-                );
-                $message = "Описание фотографии обновлено";
-                $content = 'message.php';//подключили view c сообщением
-                    break;
-
-            case 'edit':
-//                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('id'=>$_GET['id']));
-
-//                echo "<pre>";
-//                print_r ($result);
-//                echo "</pre>";
-                $content = 'edit.php';//подключили view с редактированием
-                    break;
-
-
-            case 'delete':
-                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",array('photo_id'=>$_GET['id']));
-
-                echo "<pre>";
-                print_r ($result);
-                echo "</pre>";
-                $message = "Фотография удалена";
-                $content = 'message.php';//подключили view c сообщением
-                    break;
-
-
-            case 'list':
-                $result = OdnoklassnikiSDK::makeRequest("photos.getPhotos");
-                echo "<pre>";
-//                print_r ($result);
-                echo "</pre>";
-                $content = 'list.php';//подключили view со списком
-
-                    break;
-
-
-        }
-        include 'views/template.php';
     } else {
-    //не авторизованы
+
+        //не авторизованы
         if (!is_null(OdnoklassnikiSDK::getCode())) {
-            /*
-            throw new Exception(
-                print_r(
-                    !empty($a[self::PARAMETER_NAME_ACCESS_TOKEN]) && !empty($a[self::PARAMETER_NAME_REFRESH_TOKEN])
-                )
-            );
+//            print_r(OdnoklassnikiSDK::changeCodeToToken(OdnoklassnikiSDK::getCode()));
+//            echo "<pre>";/
+//                print_r ($result);
+//            echo "</pre>";
 
-                $uid = $current_user['uid'];//id пользователя в одноклассниках
-
-
-            echo "<pre>";
-                print_r ($result);
-            echo "</pre>";
-
-
-
-            */
             if (OdnoklassnikiSDK::changeCodeToToken(OdnoklassnikiSDK::getCode())) {
                 // сделать что-то, если аторизация удалась
 
-                //запишем куки с токенами и обновим страницу
-                setcookie("access_token", OdnoklassnikiSDK::$access_token, time()+3600*5);// 5 часов
-                setcookie("refresh_token", OdnoklassnikiSDK::$refresh_token, time()+3600*5);// 5 часов
+                // получили пользователя
+                $current_user = OdnoklassnikiSDK::makeRequest("users.getCurrentUser", array("fields" => "name,pic_5"));
+                OdnoklassnikiSDK::$user_name = $current_user['name'];
 
-                header("Location: localhost:85/odnoklassniki.loc/index.php?");
+//                OdnoklassnikiSDK::showError(isset($_GET['setcookie']));
+                //запишем куки с токенами и обновим страницу
+                setcookie("access_token", OdnoklassnikiSDK::$access_token, time() + 3600 * 5);// 5 часов
+                setcookie("refresh_token", OdnoklassnikiSDK::$refresh_token, time() + 3600 * 5);// 5 часов
+                setcookie("user_name", OdnoklassnikiSDK::$user_name, time() + 3600 * 5);// 5 часов
+
+                Crud::doCrud();
+//                header("Location: localhost:85/odnoklassniki.loc/index.php?die=1");
+
             } else {
                 OdnoklassnikiSDK::showError("Не удалось получить токен");
             }
@@ -112,6 +56,88 @@ if (!OdnoklassnikiSDK::checkCurlSupport()){
 
         }
 
+    }
+}
+class Crud
+{
+
+    public static function doCrud()
+    {
+        //запишем токен из кук в переменные для запросов
+        OdnoklassnikiSDK::$access_token = isset($_COOKIE['access_token']) ? $_COOKIE['access_token'] : OdnoklassnikiSDK::$access_token;
+        OdnoklassnikiSDK::$refresh_token = isset($_COOKIE['refresh_token']) ? $_COOKIE['refresh_token'] : OdnoklassnikiSDK::$refresh_token;
+        OdnoklassnikiSDK::$user_name = isset($_COOKIE['user_name']) ? $_COOKIE['user_name'] : OdnoklassnikiSDK::$user_name;
+
+
+        $_GET['action'] = isset($_GET['action']) ? $_GET['action'] : 'list';//действие по умолчанию, если не пришло другое
+
+        switch ($_GET['action']) {
+
+            case 'logout':
+                //удаляем куки - разавторизовываемся
+                setcookie("access_token", '', -1);
+                setcookie("refresh_token", '', -1);
+                setcookie("user_name", '', -1);
+
+                $message = "Вы разавторизовались";
+                $content = 'message.php';//подключили view c сообщением
+                break;
+
+            case 'add':
+                $content = 'add.php';//подключили view c добавлением
+                break;
+
+            case 'create':
+                $result = OdnoklassnikiSDK::makeRequest("photos.createAlbum",
+                    array(
+                        'title' => $_GET['title'],
+                        'type' => 'PUBLIC'
+                    )
+                );
+
+//                echo "<pre>";
+//                print_r ($result);
+//                echo "</pre>";
+                $message = "Альбом " . $_GET['title'] . " создан";
+                $content = 'message.php';//подключили view c сообщением
+                break;
+
+            case 'save':
+                $result = OdnoklassnikiSDK::makeRequest("photos.editPhoto",
+                    array(
+                        'photo_id' => $_GET['id'],
+                        'description' => $_GET['desc'],
+                    )
+                );
+                $message = "Описание фотографии обновлено";
+                $content = 'message.php';//подключили view c сообщением
+                break;
+
+            case 'edit':
+                $content = 'edit.php';//подключили view с редактированием
+                break;
+
+
+            case 'delete':
+                $result = OdnoklassnikiSDK::makeRequest("photos.deletePhoto",
+                    array(
+                        'photo_id' => $_GET['id']
+                    )
+                );
+
+                $message = "Фотография удалена";
+                $content = 'message.php';//подключили view c сообщением
+                break;
+
+
+            case 'list':
+                $result = OdnoklassnikiSDK::makeRequest("photos.getPhotos");
+                $content = 'list.php';//подключили view со списком
+
+                break;
+        }
+
+        include 'views/template.php';
     }
 }
 ?>
