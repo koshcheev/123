@@ -21,15 +21,18 @@
 
 
             <div class="row ">
-                <div class="col s6">
 
-                </div>
                 <div class="col s3">
                     <a class="waves-effect waves-light btn"
                             href="?action=edit&id=<?php echo $value['id']?>&desc=<?php echo $value['text']?>">
                         Редактировать
                     </a>
                 </div>
+
+                <div class="col s6">
+
+                </div>
+
                 <div class="col s3">
                     <a class="waves-effect waves-light btn"
                             href="?action=delete&id=<?php echo $value['id']?>">
@@ -40,12 +43,8 @@
             </div>
 
             <div class="row">
-                <div class="col s6">
-                    <br>
-                    Количество комментариев: <?php echo $value['comments_count']?>
-                </div>
 
-                <div class="col s6 ">
+                <div class="col s12 ">
                     <div class="card">
                         <div class="card-image">
                             <img src="<?php echo $value['pic640x480']?>">
@@ -55,10 +54,12 @@
                                 Описание: <?php echo $value['text']?>
                             </p>
                         </div>
+
                     </div>
+                    <p>
+                        Количество комментариев: <?php echo $value['comments_count']?>
+                    </p>
                 </div>
-
-
             </div>
 
         </div>

@@ -17,6 +17,10 @@
 
 }
 
+.card-panel {
+    margin: 10px 100px;!important;
+}
+
 html{
     background-color: #f3e5f5;
 }
