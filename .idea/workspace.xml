@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d12f26b-3701-4dc8-8f6b-bac33804419d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/add.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css.css" beforeDir="false" afterPath="$PROJECT_DIR$/css.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/odnoklassniki_sdk.php" beforeDir="false" afterPath="$PROJECT_DIR$/odnoklassniki_sdk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/template.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,15 +54,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="35" />
-          <entry key="php" value="2040" />
-          <entry key="txt" value="11" />
+          <entry key="php" value="2048" />
+          <entry key="txt" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="35" />
-          <entry key="PHP" value="2040" />
-          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="PHP" value="2048" />
+          <entry key="PLAIN_TEXT" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -86,11 +81,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="63" column="35" lean-forward="true" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+            <state relative-caret-position="493">
+              <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -140,11 +135,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+            <state relative-caret-position="331">
+              <caret line="45" column="77" selection-start-line="45" selection-start-column="77" selection-end-line="45" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -182,10 +177,10 @@
       <find>href</find>
       <find>logo</find>
       <find>log</find>
-      <find>logout</find>
       <find>получ</find>
-      <find>showError</find>
       <find>$redirect_url</find>
+      <find>logout</find>
+      <find>showError</find>
     </findStrings>
     <replaceStrings>
       <replace>localhost:85</replace>
@@ -211,8 +206,8 @@
         <option value="$PROJECT_DIR$/views/add.php" />
         <option value="$PROJECT_DIR$/css.css" />
         <option value="$PROJECT_DIR$/odnoklassniki_sdk.php" />
-        <option value="$PROJECT_DIR$/views/template.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/views/template.php" />
       </list>
     </option>
   </component>
@@ -258,7 +253,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539246094405" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539246261347" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -295,7 +290,7 @@
       <workItem from="1539071358956" duration="3437000" />
       <workItem from="1539074865786" duration="7291000" />
       <workItem from="1539088944065" duration="9216000" />
-      <workItem from="1539175969828" duration="15078000" />
+      <workItem from="1539175969828" duration="15245000" />
     </task>
     <task id="LOCAL-00001" summary="design + fx">
       <created>1539182708375</created>
@@ -304,11 +299,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539182708375</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="aaaaaaaaaaaaaaaaaaaaaaaaa">
+      <created>1539246115455</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1539246115455</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35054000" />
+    <option name="totallyTimeSpent" value="35221000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -351,7 +353,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="design + fx" />
-    <option name="LAST_COMMIT_MESSAGE" value="design + fx" />
+    <MESSAGE value="aaaaaaaaaaaaaaaaaaaaaaaaa" />
+    <option name="LAST_COMMIT_MESSAGE" value="aaaaaaaaaaaaaaaaaaaaaaaaa" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -390,24 +393,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/list.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/add.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -418,10 +407,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="63" column="35" lean-forward="true" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
+        <state relative-caret-position="493">
+          <caret line="68" column="36" lean-forward="true" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="45" column="77" selection-start-line="45" selection-start-column="77" selection-end-line="45" selection-end-column="77" />
         </state>
       </provider>
     </entry>

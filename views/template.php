@@ -43,7 +43,7 @@
 
             <div class="row ">
                 <div class="col s8">
-<!--                    <h5>Пользователь: --><?php //echo $current_user['user_name']?><!-- </h5>-->
+                    <h5>Пользователь: <?php echo OdnoklassnikiSDK::$user_name?> </h5>
                 </div>
                 <div class="col s2">
 
